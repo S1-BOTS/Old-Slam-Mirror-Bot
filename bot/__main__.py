@@ -44,10 +44,10 @@ def stats(update, context):
 @run_async
 def start(update, context):
     start_string = f'''
-This bot can mirror all your links to Google drive!
-Type /{BotCommands.HelpCommand} to get a list of available commands
+**Hi**, I am **Annony Cloud** Mirror Bot!
+Type /{BotCommands.HelpCommand} To Get List of Commands.
 '''
-    update.effective_message.reply_photo("https://telegra.ph/file/db03910496f06094f1f7a.jpg", start_string, parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_photo("https://telegra.ph/file/68ba9706cdf78f28b4a8c.jpg", start_string, parse_mode=ParseMode.MARKDOWN)
 
 @run_async
 def chat_list(update, context):
@@ -60,7 +60,7 @@ def chat_list(update, context):
 def repo(update, context):
     bot.send_message(update.message.chat_id,
     reply_to_message_id=update.message.message_id,
-    text="Repo: https://github.com/breakdowns/slam-mirrorbot\nGroup: https://t.me/SlamMirrorSupportGroup", disable_web_page_preview=True)
+    text="Channel: https://t.me/AsmSafone\nSupport Group: https://t.me/SafoTheBot", disable_web_page_preview=True)
 
 
 @run_async
