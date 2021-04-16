@@ -34,33 +34,26 @@ def stats(update, context):
             f'<b>Used:</b> {used}  ' \
             f'<b>Free:</b> {free}\n\n' \
             f'📊Data Usage📊\n<b>Upload:</b> {sent}\n' \
-            f'<b>Down:</b> {recv}\n\n' \
-            f'<b>CPU:</b> {cpuUsage}%\n' \
-            f'<b>RAM:</b> {memory}%\n' \
-            f'<b>Disk:</b> {disk}%'
+            f'<b>Download:</b> {recv}\n\n' \
+            f'<b>CPU:</b> {cpuUsage}% RAM:</b> {memory}% <b>DISK:</b> {disk}%'
     sendMessage(stats, context.bot, update)
 
 
 @run_async
 def start(update, context):
     start_string = f'''
-**Hi**, I am **Annony Cloud** Mirror Bot!
-Type /{BotCommands.HelpCommand} To Get List of Commands.
+Hi Sir, I am **Safone** Mirror Bot!
+I Only Works For @AnonyCloud Mirror Group!
+I Can Mirror All Your Links to Google drive!
+Type /{BotCommands.HelpCommand} To Get List of Available Commands!
 '''
-    update.effective_message.reply_photo("https://telegra.ph/file/68ba9706cdf78f28b4a8c.jpg", start_string, parse_mode=ParseMode.MARKDOWN)
+    sendMessage(start_string, context.bot, update)
 
 @run_async
 def chat_list(update, context):
     chatlist =''
     chatlist += '\n'.join(str(id) for id in AUTHORIZED_CHATS)
     sendMessage(f'<b>Authorized List:</b>\n{chatlist}\n', context.bot, update)
-
-
-@run_async
-def repo(update, context):
-    bot.send_message(update.message.chat_id,
-    reply_to_message_id=update.message.message_id,
-    text="Channel: https://t.me/AsmSafone\nSupport Group: https://t.me/SafoTheBot", disable_web_page_preview=True)
 
 
 @run_async
@@ -90,45 +83,38 @@ def log(update, context):
 @run_async
 def bot_help(update, context):
     help_string = f'''
-/{BotCommands.HelpCommand}: To get this message
+/{BotCommands.HelpCommand}: To Get This Bot Help Message!
 
-/{BotCommands.MirrorCommand} [download_url][magnet_link]: Start mirroring the link to google drive
+/{BotCommands.MirrorCommand} [download_url][magnet_link]: Start Mirroring The Link To Google Drive!
 
-/{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: Starts mirroring and if downloaded file is any archive, extracts it to google drive
+/{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: Starts Mirroring & If Downloaded File Is Any Archive, Extracts It To Google Drive!
 
-/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Start mirroring and upload the archived (.tar) version of the download
+/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Start Mirroring & Upload The Archived (.tar) Version Of The Downloaded File!
 
-/{BotCommands.CloneCommand}: Copy file/folder to google drive
+/{BotCommands.WatchCommand} [youtube-dl supported link]: Mirror Through YouTube-DL. Click /{BotCommands.WatchCommand} For More Info!
 
-/{BotCommands.WatchCommand} [youtube-dl supported link]: Mirror through youtube-dl. Click /{BotCommands.WatchCommand} for more help.
+/{BotCommands.TarWatchCommand} [youtube-dl supported link]: Mirror Through YouTube-DL & Make Archived (.tar) Before Uploading!
 
-/{BotCommands.TarWatchCommand} [youtube-dl supported link]: Mirror through youtube-dl and tar before uploading
+/{BotCommands.CancelMirror}: Reply To The Message By Which The Download Was Initiated & That Download Will Be Cancelled!
 
-/{BotCommands.CancelMirror}: Reply to the message by which the download was initiated and that download will be cancelled
+/{BotCommands.CloneCommand}: Copy File / Folder To Google Drive!
 
-/{BotCommands.StatusCommand}: Shows a status of all the downloads
+/{BotCommands.StatusCommand}: Shows A Status Of All The Downloads!
 
-/{BotCommands.ListCommand} [search term]: Searches the search term in the Google drive, if found replies with the link
+/ts [search query]: Searches The Search Query In Whole Torrents, If Found Replies With The Available Torrent Links!
 
-/{BotCommands.StatsCommand}: Show Stats of the machine the bot is hosted on
+/{BotCommands.ListCommand} [search term]: Searches The Search Term In The Google Drive, If Found Replies With The Link!
 
-/{BotCommands.AuthorizeCommand}: Authorize a chat or a user to use the bot (Can only be invoked by owner of the bot)
+/{BotCommands.StatsCommand}: Show Stats Of The Machine The Bot Is Hosted On!!
 
-/{BotCommands.AuthListCommand}: See Authorized list (Can only be invoked by owner of the bot)
+/{BotCommands.AuthorizeCommand}: Authorize A Chat or A User To Use The Bot (Command Is Only For Bot Owner)!
 
-/{BotCommands.LogCommand}: Get a log file of the bot. Handy for getting crash reports
+/{BotCommands.AuthListCommand}: See Authorized Chat List (Command Is Only For Bot Owner)!
 
-/{BotCommands.UsageCommand}: To see Heroku Dyno Stats (Owner only).
+/{BotCommands.LogCommand}: Get A Log File Of The Bot. Handy For Getting Crash Reports (Bot Owner Only)!
 
-/{BotCommands.SpeedCommand}: Check Internet Speed of the Host
+/{BotCommands.SpeedCommand}: Check Internet Speed of the Host!
 
-/{BotCommands.RepoCommand}: Get the bot repo.
-
-/tshelp: Get help for torrent search module.
-
-/weebhelp: Get help for anime, manga and character module.
-
-/stickerhelp: Get help for stickers module.
 '''
     sendMessage(help_string, context.bot, update)
 
