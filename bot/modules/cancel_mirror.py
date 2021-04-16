@@ -32,11 +32,11 @@ def cancel_mirror(update, context):
         if mirror_message is None or mirror_message.message_id not in keys:
             if BotCommands.MirrorCommand in mirror_message.text or \
                     BotCommands.TarMirrorCommand in mirror_message.text:
-                msg = "Mirror already have been cancelled"
+                msg = "Mirror Already Have Been Cancelled!"
                 sendMessage(msg, context.bot, update)
                 return
             else:
-                msg = "Please reply to the /mirror message which was used to start the download or /cancel gid to cancel it!"
+                msg = "Please Reply To The /mirror Message Which Was Used To Start The Download or /cancel gid To Cancel It!"
                 sendMessage(msg, context.bot, update)
                 return
     if dl.status() == "Uploading":
@@ -61,7 +61,7 @@ def cancel_all(update, context):
                 dlDetails.download().cancel_download()
                 count += 1
     delete_all_messages()
-    sendMessage(f'Cancelled {count} downloads!', context.bot, update)
+    sendMessage(f'Cancelled {count} Downloads!', context.bot, update)
 
 
 cancel_mirror_handler = CommandHandler(BotCommands.CancelMirror, cancel_mirror,
