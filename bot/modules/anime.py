@@ -256,7 +256,7 @@ def weebhelp(update, context):
 • `/chr`*:* search character
 • `/mng`*:* search manga
 '''
-    update.effective_message.reply_photo("https://telegra.ph/file/db03910496f06094f1f7a.jpg", help_string, parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_photo("https://telegra.ph/file/68ba9706cdf78f28b4a8c.jpg", help_string, parse_mode=ParseMode.MARKDOWN)
 
 
 ANIME_HANDLER = CommandHandler("al", anime)
