@@ -67,7 +67,7 @@ class MirrorListener(listeners.MirrorListeners):
                 path = fs_utils.tar(m_path)
             except FileNotFoundError:
                 LOGGER.info('File to archive not found!')
-                self.onUploadError('Internal error occurred!!')
+                self.onUploadError('Internal Error Occurred!!')
                 return
         elif self.extract:
             download.is_extracting = True
@@ -85,7 +85,7 @@ class MirrorListener(listeners.MirrorListeners):
                     archive_result = subprocess.run(["extract", m_path])
                 if archive_result.returncode == 0:
                     threading.Thread(target=os.remove, args=(m_path,)).start()
-                    LOGGER.info(f"Deleting archive : {m_path}")
+                    LOGGER.info(f"Deleting Archive : {m_path}")
                 else:
                     LOGGER.warning('Unable to extract archive! Uploading anyway')
                     path = f'{DOWNLOAD_DIR}{self.uid}/{name}'
@@ -130,7 +130,7 @@ class MirrorListener(listeners.MirrorListeners):
             uname = f"@{self.message.from_user.username}"
         else:
             uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
-        msg = f"{uname} your download has been stopped due to: {error}"
+        msg = f"{uname} Your Download Has Been Stopped Due to: {error}"
         sendMessage(msg, self.bot, self.update)
         if count == 0:
             self.clean()
@@ -145,7 +145,7 @@ class MirrorListener(listeners.MirrorListeners):
 
     def onUploadComplete(self, link: str, size):
         with download_dict_lock:
-            msg = f'<b>Filename: </b><code>{download_dict[self.uid].name()}</code>\n<b>Size: </b><code>{size}</code>'
+            msg = f'<b>File Name: </b><code>{download_dict[self.uid].name()}</code>\n<b>File Size: </b><code>{size}</code>'
             buttons = button_build.ButtonMaker()
             if SHORTENER is not None and SHORTENER_API is not None:
                 surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, link)).text
@@ -173,7 +173,7 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             if uname is not None:
-                msg += f'\n\ncc: {uname}'
+                msg += f'\n\n©️ {uname}'
             try:
                 fs_utils.clean_download(download_dict[self.uid].path())
             except FileNotFoundError:
@@ -248,7 +248,7 @@ def _mirror(bot, update, isTar=False, extract=False):
     else:
         tag = None
     if not bot_utils.is_url(link) and not bot_utils.is_magnet(link):
-        sendMessage('No download source provided', bot, update)
+        sendMessage('No Download Source Provided 😑', bot, update)
         return
 
     try:
@@ -259,9 +259,9 @@ def _mirror(bot, update, isTar=False, extract=False):
     if bot_utils.is_mega_link(link):
         link_type = get_mega_link_type(link)
         if link_type == "folder" and BLOCK_MEGA_FOLDER:
-            sendMessage("Mega folder are blocked!", bot, update)
+            sendMessage("Mega Folder Are Blocked!", bot, update)
         elif BLOCK_MEGA_LINKS:
-            sendMessage("Mega links are blocked bcoz mega downloading is too much unstable and buggy. mega support will be added back after fix", bot, update)
+            sendMessage("Mega Links Are Blocked Bcoz Mega Downloading Is Too Much Unstable And Buggy. Mega Support Will Be Added Back After Fix!", bot, update)
         else:
             mega_dl = MegaDownloadHelper()
             mega_dl.add_download(link, f'{DOWNLOAD_DIR}/{listener.uid}/', listener)
