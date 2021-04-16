@@ -109,7 +109,7 @@ class GoogleDriveHelper:
         try:
             file_id = self.getIdFromUrl(link)
         except (KeyError,IndexError):
-            msg = "Google drive ID could not be found in the provided link"
+            msg = "Google Drive ID could not be found in the provided link"
             return msg
         msg = ''
         try:
@@ -118,9 +118,9 @@ class GoogleDriveHelper:
         except HttpError as err:
             LOGGER.error(str(err))
             if "File not found" in str(err):
-                msg = "No such file exist"
+                msg = "No Such File Exist!"
             else:
-                msg = "Something went wrong check log"
+                msg = "Something Went Wrong Check Log!"
         finally:
             return msg
 
@@ -151,7 +151,7 @@ class GoogleDriveHelper:
         # File body description
         file_metadata = {
             'name': file_name,
-            'description': 'Uploaded by Slam Mirror Bot',
+            'description': 'Uploaded By Safone Mirror Bot',
             'mimeType': mime_type,
         }
         if parent_id is not None:
@@ -190,7 +190,7 @@ class GoogleDriveHelper:
                     if reason == 'userRateLimitExceeded' or reason == 'dailyLimitExceeded':
                         if USE_SERVICE_ACCOUNTS:
                             self.switchServiceAccount()
-                            LOGGER.info(f"Got: {reason}, Trying Again.")
+                            LOGGER.info(f"Got: {reason}, Trying Again...")
                             return self.upload_file(file_path, file_name, mime_type, parent_id)
                     else:
                         raise err
@@ -218,7 +218,7 @@ class GoogleDriveHelper:
                 mime_type = get_mime_type(file_path)
                 link = self.upload_file(file_path, file_name, mime_type, parent_id)
                 if link is None:
-                    raise Exception('Upload has been manually cancelled')
+                    raise Exception('Upload Has Been Manually Cancelled!')
                 LOGGER.info("Uploaded To G-Drive: " + file_path)
             except Exception as e:
                 if isinstance(e, RetryError):
@@ -236,7 +236,7 @@ class GoogleDriveHelper:
                 dir_id = self.create_directory(os.path.basename(os.path.abspath(file_name)), parent_id)
                 result = self.upload_dir(file_path, dir_id)
                 if result is None:
-                    raise Exception('Upload has been manually cancelled!')
+                    raise Exception('Upload Has Been Manually Cancelled!')
                 LOGGER.info("Uploaded To G-Drive: " + file_name)
                 link = f"https://drive.google.com/folderview?id={dir_id}"
             except Exception as e:
@@ -252,7 +252,7 @@ class GoogleDriveHelper:
                 self.updater.cancel()
         LOGGER.info(download_dict)
         self.__listener.onUploadComplete(link, size)
-        LOGGER.info("Deleting downloaded file/folder..")
+        LOGGER.info("Deleting Downloaded file/folder..")
         return link
 
     @retry(wait=wait_exponential(multiplier=2, min=3, max=6), stop=stop_after_attempt(5),
@@ -271,7 +271,7 @@ class GoogleDriveHelper:
                 if reason == 'userRateLimitExceeded' or reason == 'dailyLimitExceeded':
                     if USE_SERVICE_ACCOUNTS:
                         self.switchServiceAccount()
-                        LOGGER.info(f"Got: {reason}, Trying Again.")
+                        LOGGER.info(f"Got: {reason}, Trying Again...")
                         return self.copyFile(file_id,dest_id)
                 else:
                     raise err
@@ -308,7 +308,7 @@ class GoogleDriveHelper:
         try:
             file_id = self.getIdFromUrl(link)
         except (KeyError,IndexError):
-            msg = "Google drive ID could not be found in the provided link"
+            msg = "Google Drive ID could not be found in the provided link"
             return msg
         msg = ""
         LOGGER.info(f"File ID: {file_id}")
@@ -317,7 +317,7 @@ class GoogleDriveHelper:
             if meta.get("mimeType") == self.__G_DRIVE_DIR_MIME_TYPE:
                 dir_id = self.create_directory(meta.get('name'), parent_id)
                 result = self.cloneFolder(meta.get('name'), meta.get('name'), meta.get('id'), dir_id)
-                msg += f'<b>Filename: </b><code>{meta.get("name")}</code>\n<b>Size: </b><code>{get_readable_file_size(self.transferred_size)}</code>'
+                msg += f'<b>File Name: </b><code>{meta.get("name")}</code>\n<b>File Size: </b><code>{get_readable_file_size(self.transferred_size)}</code>'
                 durl = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
                 buttons = button_build.ButtonMaker()
                 if SHORTENER is not None and SHORTENER_API is not None:
@@ -340,7 +340,7 @@ class GoogleDriveHelper:
                     buttons.buildbutton(f"{BUTTON_FIVE_NAME}", f"{BUTTON_FIVE_URL}")
             else:
                 file = self.copyFile(meta.get('id'), parent_id)
-                msg += f'<b>Filename: </b><code>{file.get("name")}</code>'
+                msg += f'<b>File Name: </b><code>{file.get("name")}</code>'
                 durl = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
                 buttons = button_build.ButtonMaker()
                 if SHORTENER is not None and SHORTENER_API is not None:
@@ -349,7 +349,7 @@ class GoogleDriveHelper:
                 else:
                     buttons.buildbutton("☁️Drive Link☁️", durl)
                 try:
-                    msg += f'\n<b>Size: </b><code>{get_readable_file_size(int(meta.get("size")))}</code>'
+                    msg += f'\n<b>File Size: </b><code>{get_readable_file_size(int(meta.get("size")))}</code>'
                 except TypeError:
                     pass
                 if INDEX_URL is not None:
@@ -478,9 +478,9 @@ class GoogleDriveHelper:
                     content += f'<b> | <a href="https://telegra.ph/{self.path[nxt_page]}">Next</a></b>'
                     nxt_page += 1
             Telegraph(access_token=telegraph_token).edit_page(path = self.path[prev_page],
-                                 title = 'Slam Mirror Bot - Search',
-                                 author_name='Slam Mirror Bot',
-                                 author_url='https://github.com/breakdowns/slam-mirrorbot',
+                                 title = 'Safone Mirror Bot - Search',
+                                 author_name='Safone Mirror Bot',
+                                 author_url='https://t.me/anonydrive',
                                  html_content=content)
         return
 
@@ -551,9 +551,9 @@ class GoogleDriveHelper:
 
             for content in self.telegraph_content :
                 self.path.append(Telegraph(access_token=telegraph_token).create_page(
-                                                        title = 'Slam Mirror Bot Search',
-                                                        author_name='Slam Mirror Bot',
-                                                        author_url='https://github.com/breakdowns/slam-mirrorbot',
+                                                        title = 'Safone Mirror Bot - Search',
+                                                        author_name='Safone Mirror Bot',
+                                                        author_url='https://t.me/anonydrive',
                                                         html_content=content
                                                         )['path'])
 
@@ -561,7 +561,7 @@ class GoogleDriveHelper:
             if self.num_of_path > 1:
                 self.edit_telegraph()
 
-            msg = f"<b>🔎 Search Results For <i>{fileName}</i></b> \n<b>📚 Found {len(response['files'])} results</b>"
+            msg = f"<b>🔎 Search Results:</b> \n<b>Found {len(response['files'])} Results For <i>{fileName}</i></b>"
             buttons = button_build.ButtonMaker()   
             buttons.buildbutton("HERE", f"https://telegra.ph/{self.path[0]}")
 
