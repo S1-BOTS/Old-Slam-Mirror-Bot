@@ -35,17 +35,17 @@ def stats(update, context):
             f'<b>Free:</b> {free}\n\n' \
             f'📊Data Usage📊\n<b>Upload:</b> {sent}\n' \
             f'<b>Download:</b> {recv}\n\n' \
-            f'<b>CPU:</b> {cpuUsage}% RAM:</b> {memory}% <b>DISK:</b> {disk}%'
+            f'<b>CPU:</b> {cpuUsage}% ' \
+            f'<b>RAM:</b> {memory}% ' \
+            f'<b>DISK:</b> {disk}%'
     sendMessage(stats, context.bot, update)
 
 
 @run_async
 def start(update, context):
     start_string = f'''
-Hi Sir, I am **Safone** Mirror Bot!
-I Only Works For @AnonyCloud Mirror Group!
-I Can Mirror All Your Links to Google drive!
-Type /{BotCommands.HelpCommand} To Get List of Available Commands!
+Hi Sir, I'm Fast Mirror Bot!
+I Can Mirror All Your Links to Google Drive. I Only Works For @AnonyCloud Group. Type /{BotCommands.HelpCommand} To Get List of Available Commands!
 '''
     sendMessage(start_string, context.bot, update)
 
@@ -83,17 +83,17 @@ def log(update, context):
 @run_async
 def bot_help(update, context):
     help_string = f'''
-/{BotCommands.HelpCommand}: To Get This Bot Help Message!
+/{BotCommands.HelpCommand}: To Get This Help Message!
 
-/{BotCommands.MirrorCommand} [download_url][magnet_link]: Start Mirroring The Link To Google Drive!
+/{BotCommands.MirrorCommand} [download_url][magnet_link]: Starts Mirroring The Link To Google Drive!
 
 /{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: Starts Mirroring & If Downloaded File Is Any Archive, Extracts It To Google Drive!
 
-/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Start Mirroring & Upload The Archived (.tar) Version Of The Downloaded File!
+/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Starts Mirroring & Upload The Archived (.tar) Version Of The Downloaded File!
 
-/{BotCommands.WatchCommand} [youtube-dl supported link]: Mirror Through YouTube-DL. Click /{BotCommands.WatchCommand} For More Info!
+/{BotCommands.WatchCommand} [youtube-dl supported link]: Starts Mirror Through YouTube-DL. Click /{BotCommands.WatchCommand} For More Info!
 
-/{BotCommands.TarWatchCommand} [youtube-dl supported link]: Mirror Through YouTube-DL & Make Archived (.tar) Before Uploading!
+/{BotCommands.TarWatchCommand} [youtube-dl supported link]: Starts Mirror Through YouTube-DL & Make Archived (.tar) Before Uploading!
 
 /{BotCommands.CancelMirror}: Reply To The Message By Which The Download Was Initiated & That Download Will Be Cancelled!
 
@@ -101,20 +101,17 @@ def bot_help(update, context):
 
 /{BotCommands.StatusCommand}: Shows A Status Of All The Downloads!
 
-/ts [search query]: Searches The Search Query In Whole Torrents, If Found Replies With The Available Torrent Links!
-
 /{BotCommands.ListCommand} [search term]: Searches The Search Term In The Google Drive, If Found Replies With The Link!
 
-/{BotCommands.StatsCommand}: Show Stats Of The Machine The Bot Is Hosted On!!
+/{BotCommands.StatsCommand}: Show Stats Of The Machine The Bot Is Hosted On! (Only For Bot Owner)
 
-/{BotCommands.AuthorizeCommand}: Authorize A Chat or A User To Use The Bot (Command Is Only For Bot Owner)!
+/{BotCommands.AuthorizeCommand}: Authorize A Chat or A User To Use The Bot! (Only For Bot Owner)
 
-/{BotCommands.AuthListCommand}: See Authorized Chat List (Command Is Only For Bot Owner)!
+/{BotCommands.AuthListCommand}: See Authorized Chat List! (Only For Bot Owner)
 
-/{BotCommands.LogCommand}: Get A Log File Of The Bot. Handy For Getting Crash Reports (Bot Owner Only)!
+/{BotCommands.LogCommand}: Get A Log File Of The Bot. Handy For Getting Crash Reports! (Only For Bot Owner)
 
-/{BotCommands.SpeedCommand}: Check Internet Speed of the Host!
-
+This Bot Is Developed By @I_Am_Only_One_1 👑
 '''
     sendMessage(help_string, context.bot, update)
 
