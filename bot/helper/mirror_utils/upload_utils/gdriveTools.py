@@ -478,9 +478,9 @@ class GoogleDriveHelper:
                     content += f'<b> | <a href="https://telegra.ph/{self.path[nxt_page]}">Next</a></b>'
                     nxt_page += 1
             Telegraph(access_token=telegraph_token).edit_page(path = self.path[prev_page],
-                                 title = 'Safone Mirror Bot - Search',
-                                 author_name='Safone Mirror Bot',
-                                 author_url='https://t.me/anonydrive',
+                                 title = 'Anony Cloud - Search',
+                                 author_name='Safone Robot',
+                                 author_url='https://t.me/anonycloud',
                                  html_content=content)
         return
 
@@ -551,9 +551,9 @@ class GoogleDriveHelper:
 
             for content in self.telegraph_content :
                 self.path.append(Telegraph(access_token=telegraph_token).create_page(
-                                                        title = 'Safone Mirror Bot - Search',
-                                                        author_name='Safone Mirror Bot',
-                                                        author_url='https://t.me/anonydrive',
+                                                        title = 'Anony Cloud - Search',
+                                                        author_name='Safone Robot',
+                                                        author_url='https://t.me/anonycloud',
                                                         html_content=content
                                                         )['path'])
 
@@ -561,7 +561,7 @@ class GoogleDriveHelper:
             if self.num_of_path > 1:
                 self.edit_telegraph()
 
-            msg = f"<b>🔎 Search Results:</b> \n<b>Found {len(response['files'])} Results For <i>{fileName}</i></b>"
+            msg = f"<b>🔎 Search Results:</b> \nFound {len(response['files'])} Results For <code>{fileName}</code>"
             buttons = button_build.ButtonMaker()   
             buttons.buildbutton("HERE", f"https://telegra.ph/{self.path[0]}")
 
